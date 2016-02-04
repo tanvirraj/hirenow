@@ -38,12 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'userprofile',
+
 
     # djagno token based authentication
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    
+
+    # app name 
+    'userprofile',
+
+    
+
 ]
 
 MIDDLEWARE_CLASSES = [

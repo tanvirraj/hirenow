@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.conf.urls import include , url
 from django.contrib import admin
+from userprofile import urls as userprofile_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^userprofile/', include(userprofile_urls)),
     url(r'^auth/', include('djoser.urls.authtoken')),
 ]
