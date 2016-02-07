@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from base.models import *
 
 
-class UserProfile(Base):
+class UserProfile(models.Model):
     GENDER = (
         ('M', 'Male'),
         ('F', 'Female')
@@ -15,7 +15,7 @@ class UserProfile(Base):
         ('D', 'Driver'),
         ('P', 'passenger')
     )
-
+    # base = models.ForeignKey(Base,null=True, blank=True)
     first_name = models.CharField(max_length=500, null=True, blank=True)
     last_name = models.CharField(max_length=500, null=True, blank=True)
     email = models.EmailField(max_length=500, null=True, blank=True)
