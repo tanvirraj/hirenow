@@ -1,0 +1,7 @@
+-e git://github.com/hersonls/djamin.git@80223aee9628af3656247bd8e46018cc392596f2#egg=djamin
+Django==1.9.2
+djangorestframework==3.3.2
+djoser==0.4.0
+Pillow==3.1.0
+psycopg2==2.6.1
+wheel==0.26.0
