@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # djagno token based authentication
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_swagger',
     'djoser',
     
 
@@ -108,7 +109,7 @@ WSGI_APPLICATION = 'uber.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'uber',
+        'NAME': 'khep',
         'USER': 'tanvir',
         'PASSWORD': 'tanvir',
         'HOST': 'localhost',
@@ -153,3 +154,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles_env', 'static_root')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static', 'my_static'),
+
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles_env', 'media_root')
