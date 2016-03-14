@@ -5,15 +5,8 @@
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/xerial-sqlite-license.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/sqlite-jdbc-3.8.9.jar</url>
-        </library>
-      </libraries>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/khep</jdbc-url>
+      <libraries />
     </data-source>
     <data-source source="LOCAL" name="Django default [2]" uuid="48330484-abd8-4311-bedd-22920a9d76e3">
       <driver-ref>sqlite.xerial</driver-ref>

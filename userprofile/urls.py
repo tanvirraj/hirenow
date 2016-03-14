@@ -8,8 +8,10 @@ from userprofile.views import *
 
 urlpatterns = [
     # api
-    url(r'^user/$', UserProfileList.as_view()),
-    url(r'^user/(?P<pk>[0-9]+)/$', UserProfileDetail.as_view()),
+    url(r'^userprofile/$', UserProfileList.as_view()),
+    url(r'^userprofiledetail/(?P<pk>[0-9]+)/$', UserProfileDetail.as_view()),
+    url(r'^user/$', UserList.as_view()),
+    url(r'^userdetail/(?P<pk>[0-9]+)/$', UserDetail.as_view()),
 
 ]
 
