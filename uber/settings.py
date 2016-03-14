@@ -74,14 +74,15 @@ REST_FRAMEWORK = {
     ),
 }
 
+# 
 
-# DJOSER = {
-#     'DOMAIN': 'frontend.com',
-#     'SITE_NAME': 'Frontend',
-#     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-#     'ACTIVATION_URL': '#/activate/{uid}/{token}',
-#     'SEND_ACTIVATION_EMAIL': True,
-# }
+DJOSER = {
+    'DOMAIN': 'Khep.com',
+    'SITE_NAME': 'Khep',
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+}
 
 ROOT_URLCONF = 'uber.urls'
 
@@ -162,3 +163,31 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles_env', 'media_root')
+
+
+# # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'rajbp02@gmail.com'
+# EMAIL_HOST_PASSWORD = 'AZX0171501680'
+# EMAIL_PORT = 587
+
+
+#For email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'sender@gmail.com'
+
+#Must generate specific password for your app in [gmail settings][1]
+EMAIL_HOST_PASSWORD = 'app_specific_password'
+
+EMAIL_PORT = 587
+
+#This did the trick
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
