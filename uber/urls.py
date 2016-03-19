@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf.urls import include , url
 from django.contrib import admin
 from userprofile import urls as userprofile_urls
+from rides import urls as rides_urls
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^userprofile/', include(userprofile_urls)),
+    url(r'^taxilocation/', include(rides_urls)),
     url(r'^auth/', include('djoser.urls.authtoken')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
 ]

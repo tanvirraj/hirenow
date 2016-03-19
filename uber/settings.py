@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     # app name
     'base',
     'userprofile',
+    'rides',
 
     
 

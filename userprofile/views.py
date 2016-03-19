@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from userprofile.models import UserProfile
-from userprofile.serializers import UserProfileSerializer , UserSerializer
+from userprofile.serializers import UserProfileSerializer, UserSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework import generics
@@ -16,7 +16,6 @@ class UserProfileList(APIView):
     """
     List all snippets, or create a new snippet.
     """
-
     def get(self, request, format=None):
         userProfile = UserProfile.objects.all()
         serializer = UserProfileSerializer(userProfile, many=True)
@@ -41,9 +40,6 @@ class UserProfileDetail(APIView):
     """
     Retrieve, update or delete a snippet instance.
     """
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-    #                  IsOwnerOrReadOnly,)
-
     def get_object(self, pk):
         try:
             return UserProfile.objects.get(pk=pk)
@@ -78,7 +74,6 @@ class UserDetail(APIView):
     """
     Retrieve, update or delete a snippet instance.
     """
-
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)
@@ -89,6 +84,7 @@ class UserDetail(APIView):
         user = self.get_object(pk)
         serializer = UserSerializer(user)
         return Response(serializer.data)
+
 
     def put(self, request, pk, format=None):
         user = self.get_object(pk)

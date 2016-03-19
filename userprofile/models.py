@@ -27,7 +27,7 @@ class UserProfile(models.Model):
     nid = models.IntegerField(null=True, blank=True)
     profile_picture = models.ImageField(null=True, blank=True)
     nid_picture = models.ImageField(max_length=500, null=True, blank=True)
-    gcm_register = models.IntegerField(null=True, blank=True)
+    gcm_register = models.CharField(max_length=600, null=True, blank=True)
     profession = models.CharField(max_length=100, null=True, blank=True)
     user_type = models.CharField(max_length=200, choices=USERTYPE, default='Driver')
     connected_user = models.OneToOneField('auth.User', related_name='userprofiles', null=True, blank=True)
