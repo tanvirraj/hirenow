@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ae764f1-73f1-40bf-a5ff-ba98b44b4274" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/search_view.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/serializers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userprofile/models.py" afterPath="$PROJECT_DIR$/userprofile/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uber/settings.py" afterPath="$PROJECT_DIR$/uber/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uber/urls.py" afterPath="$PROJECT_DIR$/uber/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userprofile/views.py" afterPath="$PROJECT_DIR$/userprofile/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/project xfin.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/migrations/0001_initial.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/userprofile/migrations/0004_auto_20160314_1111.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/userprofile/migrations/0005_auto_20160316_0603.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/API-Info.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/migrations/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/admin.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/apps.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/gcm_sender.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/generic_mail.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/tests.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rides/views.py" />
     </list>
     <ignored path="uber.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rides/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="320" max-vertical-offset="440">
+            <state vertical-scroll-proportion="0.54888505" vertical-offset="0" max-vertical-offset="583">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -88,10 +94,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rides/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.039451115" vertical-offset="3057" max-vertical-offset="3640">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2277" max-vertical-offset="3640">
               <caret line="154" column="115" selection-start-line="154" selection-start-column="115" selection-end-line="154" selection-end-column="115" />
               <folding>
                 <element signature="e#460#1268#0" expanded="true" />
@@ -1048,17 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rides/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="440">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#335#362#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userprofile/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
@@ -1129,7 +1124,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rides/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.039451115" vertical-offset="3057" max-vertical-offset="3640">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2277" max-vertical-offset="3640">
           <caret line="154" column="115" selection-start-line="154" selection-start-column="115" selection-end-line="154" selection-end-column="115" />
           <folding>
             <element signature="e#460#1268#0" expanded="true" />
@@ -1142,6 +1137,17 @@
             <element signature="e#2495#2996#0" expanded="true" />
             <element signature="e#3054#3176#0" expanded="true" />
             <element signature="e#3215#3274#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rides/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54888505" vertical-offset="0" max-vertical-offset="583">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#335#362#0" expanded="true" />
           </folding>
         </state>
       </provider>

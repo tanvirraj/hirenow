@@ -1,0 +1,64 @@
+########################********* User Profile Update API: *********############################
+
+Post Request to URL:
+Parameters:
+
+fname
+lname
+bday
+gcmRegID
+address
+gender
+nationalID
+userType
+profession
+profile_Picture
+nidPic
+serverAccessToken
+mobileNum
+
+
+Get Request to URL
+Json Response:
+
+{ 
+"status":"completed",
+"fname":"Sifat", 
+"lname":"Oshan", 
+"address":"Kalabagan", 
+"email":"sifat.oshan@gmail.com", 
+"gender":"Male", 
+"bday":"18/12/199x", 
+"mobileNum":"016xxxxxxx", 
+"userProfession":"Student", 
+"userRating":"4.5", 
+"userBalance":"220.0", 
+"proPicURL":"http://aimsil.com/uber/pictures/1235.jpg" 
+}
+
+OR
+{"status":"not completed"}
+OR
+{"status":"profile picture not found"}
+OR
+{"status":"national ID not found"}
+
+
+########################*********  Ride Request API  *********############################
+
+
+Ride request URL
+
+Post Request:
+
+serverAccessToken
+srcLat
+srcLng
+distLat
+distLng
+
+
+
+
+
+
