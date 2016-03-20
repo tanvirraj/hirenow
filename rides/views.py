@@ -105,9 +105,17 @@ class TaxiSearchList(APIView):
     List all snippets, or create a new snippet.
     """
     def get(self, request, format=None):
-        lat = request.GET.get("lat", None)
-        lon = request.GET.get("lon", None)
-        driver = request.GET.get("driver", None)
+        get_lat = request.GET.get("lat", None)
+        if get_lat:
+            lat = float(get_lat)
+        get_lon = request.GET.get("lon", None)
+        if get_lon:
+            lon = float(get_lon)
+            print type(lon)
+
+
+
+        # driver = request.GET.get(driver, None)
 
         from_location = request.GET.get("from_location", None)
         to_locaton = request.GET.get("to_location", None)
@@ -172,5 +180,4 @@ class TaxiSearchList(APIView):
 # New Market  23.731128, 90.380206
 # Gulsan 23.792496 90.407806
 # Rampur 23.761226, 90.420766
-
 
