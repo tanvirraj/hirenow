@@ -113,26 +113,25 @@ class TaxiSearchList(APIView):
             source_lon = float(get_lon)
 
 
-
         destLat = request.GET.get("destLat", None)
         if destLat:
-            dest_lat = float(destLat)
+            destLat = float(destLat)
         destLon = request.GET.get("destLon", None)
         if destLon:
-            dest_lon = float(destLon)
+            destLon = float(destLon)
 
 
         step = 0
         for i in range(100):
             step = step + 1
 
-            taxiLocation = TaxiLocation.objects.filter(lat=lat, lon=lon)
+            taxiLocation = TaxiLocation.objects.filter(lat=source_lat, lon=source_lon)
             if taxiLocation:
                 break
             else:
                 # There is no Taxi in this area
-                taxiLocation = TaxiLocation.objects.filter(lat__gte=lat - (step * .05), lat__lte=lat + (step * .05),
-                                                           lon__gte=lon - (step * .05), lon__lte=lon + (step * .05),
+                taxiLocation = TaxiLocation.objects.filter(lat__gte=source_lat - (step * .05), lat__lte=source_lat + (step * .05),
+                                                           lon__gte=source_lon - (step * .05), lon__lte=source_lon + (step * .05),
                                                            )
 
 
@@ -146,8 +145,8 @@ class TaxiSearchList(APIView):
                         print "Printing User Profile"
                         gcm_register = user_profile.gcm_register
                         # print gcm_register
-                        send_message = make_request("Hello %s " % user_profile.username,
-                                                    "Do you want to go from %s,%s to %s,%s !" % (source_lat, source_lon, dest_lat, dest_lon),
+                        send_message = make_request("Hello %s " % user_profile.first_name,
+                                                    "Do you want to go from %s,%s to %s,%s !" %(source_lat, source_lon, destLat, destLon),
                                                     [gcm_register],
                                                     # "http://khep.finder-lbs.com:8001"
                                                     "ride ")
@@ -183,7 +182,7 @@ class DriverResponse(APIView):
                 driver_name = user_profile.username
                 passenger_user_profile = request.user.userprofiles
                 passenger_gcm_register =  passenger_user_profile.gcm_register
-                send_message = make_request("Hello %s " % user_profile.username,
+                send_message = make_request("Hello %s " % user_profile.first_name,
                                                     "Do you want to go from %s,%s to %s,%s !" % (source_lat, source_lon, dest_lat, dest_lon),
                                                     [gcm_register],
                                                     # "http://khep.finder-lbs.com:8001"
