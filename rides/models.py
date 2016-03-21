@@ -14,3 +14,5 @@ class TaxiLocation(models.Model):
         return self.driver.username
 
 
+class RideRequest(models.Model):
+    

@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^taxilocationdetail/(?P<pk>[0-9]+)/$', TaxiLocationDetail.as_view()),
 
     url(r'^taxisearch/$', TaxiSearchList.as_view()),
+    url(r'^driver_response/', DriverResponse.as_view()),
 
 
 ]

@@ -10,7 +10,7 @@ from userprofile.models import UserProfile
 
 import urllib2
 import json
-# from bson import json_util
+
 
 # gcm sender function
 
@@ -107,31 +107,28 @@ class TaxiSearchList(APIView):
     def get(self, request, format=None):
         get_lat = request.GET.get("lat", None)
         if get_lat:
-            lat = float(get_lat)
+            source_lat = float(get_lat)
         get_lon = request.GET.get("lon", None)
         if get_lon:
-            lon = float(get_lon)
-            print type(lon)
+            source_lon = float(get_lon)
 
 
 
-        # driver = request.GET.get(driver, None)
+        destLat = request.GET.get("destLat", None)
+        if destLat:
+            dest_lat = float(destLat)
+        destLon = request.GET.get("destLon", None)
+        if destLon:
+            dest_lon = float(destLon)
 
-        from_location = request.GET.get("from_location", None)
-        to_locaton = request.GET.get("to_location", None)
-        # print from_location
-        # print to_locaton
+
         step = 0
         for i in range(100):
             step = step + 1
-            # taxiLocation = TaxiLocation.objects.filter(lat__gte=lat - (step * .05), lat__lte=lat + (step * .05),
-            # lon__gte=lon - (step * .05), lon__lte=lon + (step * .05),driver=driver)
 
             taxiLocation = TaxiLocation.objects.filter(lat=lat, lon=lon)
             if taxiLocation:
                 break
-
-
             else:
                 # There is no Taxi in this area
                 taxiLocation = TaxiLocation.objects.filter(lat__gte=lat - (step * .05), lat__lte=lat + (step * .05),
@@ -139,17 +136,7 @@ class TaxiSearchList(APIView):
                                                            )
 
 
-                # else:
-                #     agencies = Agency.objects.filter(postal_code__icontains=search,
-                #                                      servicetype__name=search_label) | Agency.objects.filter(
-                #         street_address__icontains=search, servicetype__name=search_label) | Agency.objects.filter(
-                #         lat__gte=lat - (step * .05),
-                #         lat__lte=lat + (step * .05),
-                #         lon__gte=lon - (step * .05),
-                #         lon__lte=lon + (step * .05), servicetype__name=search_label)
-                # agencies = Agency.objects.get(
-                # Q(zip_code__icontains=search) | Q(address__icontains=search) | Q(lat__gte=lat-1.05, lat__lte=lat+1.05, lon__gte=lon-1.05, lon__lte=lon+1.05)
-                #     )
+
         if taxiLocation:
             for taxi in taxiLocation:
                         taxi_id = taxi.id
@@ -159,11 +146,11 @@ class TaxiSearchList(APIView):
                         print "Printing User Profile"
                         gcm_register = user_profile.gcm_register
                         # print gcm_register
-                        send_message = make_request("Dear%s !"% user_profile.first_name,
-                                                    "Do you want to go from %s to %s !"%(from_location , to_locaton),
+                        send_message = make_request("Hello %s " % user_profile.username,
+                                                    "Do you want to go from %s,%s to %s,%s !" % (source_lat, source_lon, dest_lat, dest_lon),
                                                     [gcm_register],
                                                     # "http://khep.finder-lbs.com:8001"
-                                                    "hello ")
+                                                    "ride ")
 
                         print "hello world"
                         response_result= json.loads(send_message)
@@ -180,4 +167,59 @@ class TaxiSearchList(APIView):
 # New Market  23.731128, 90.380206
 # Gulsan 23.792496 90.407806
 # Rampur 23.761226, 90.420766
+
+
+class DriverResponse(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request, format=None):
+        data = request.data
+        for driver in data:
+            driver_id = driver.id
+
+            if driver_id:
+                user_profile = UserProfile.objects.get(connected_user=driver_id)
+                driver_name = user_profile.username
+                passenger_user_profile = request.user.userprofiles
+                passenger_gcm_register =  passenger_user_profile.gcm_register
+                send_message = make_request("Hello %s " % user_profile.username,
+                                                    "Do you want to go from %s,%s to %s,%s !" % (source_lat, source_lon, dest_lat, dest_lon),
+                                                    [gcm_register],
+                                                    # "http://khep.finder-lbs.com:8001"
+                                                    data)
+                if response_result["success"] == 1:
+                            print "success ..."
+                            # print taxiLocation
+                            return Response(status=status.HTTP_200_OK)
+                        else:
+                            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    # def post(self, request, format=None):
+    #     data = request.data
+    #     for driver in data:
+    #         driver_id = driver.id
+    #
+    #         if driver_id:
+    #             user_profile = UserProfile.objects.get(connected_user=driver_id)
+    #             driver_name = user_profile.username
+    #             passenger_user_profile = request.user.userprofiles
+    #             passenger_gcm_register =  passenger_user_profile.gcm_register
+    #             send_message = make_request("Hello %s " % user_profile.username,
+    #                                                 "Do you want to go from %s,%s to %s,%s !" % (source_lat, source_lon, dest_lat, dest_lon),
+    #                                                 [gcm_register],
+    #                                                 # "http://khep.finder-lbs.com:8001"
+    #                                                 data)
+    #
+    #
+    #
+    #     serializer = TaxiLocationSerializer(data=request.data)
+    #     print request.data
+    #     if serializer.is_valid():
+    #         print "inside valid"
+    #         print serializer
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #
 
