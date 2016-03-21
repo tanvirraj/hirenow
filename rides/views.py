@@ -189,11 +189,11 @@ class DriverResponse(APIView):
                                                     # "http://khep.finder-lbs.com:8001"
                                                     data)
                 if response_result["success"] == 1:
-                            print "success ..."
-                            # print taxiLocation
-                            return Response(status=status.HTTP_200_OK)
-                        else:
-                            return Response(status=status.HTTP_400_BAD_REQUEST)
+                    print "success ..."
+                    # print taxiLocation
+                    return Response(status=status.HTTP_200_OK)
+                else:
+                    return Response(status=status.HTTP_400_BAD_REQUEST)
 
     # def post(self, request, format=None):
     #     data = request.data

@@ -13,6 +13,3 @@ class TaxiLocation(models.Model):
     def __unicode__(self):
         return self.driver.username
 
-
-class RideRequest(models.Model):
-    
