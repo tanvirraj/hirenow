@@ -2,14 +2,36 @@ from django.shortcuts import render
 
 # Create your views here.
 from rides.models import TaxiLocation
-from rides.serializers import TaxiLocationSerializer
+from rides.serializers import TaxiLocationSerializer, DriverResponseSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from userprofile.models import UserProfile
-
+# cron job
+from django_cron import CronJobBase, Schedule
+from django.conf import settings
 import urllib2
 import json
+import datetime
+from django.contrib.sessions.backends.db import SessionStore
+# corn job
+
+from importlib import import_module
+from django.conf import settings
+from django.contrib.sessions.backends.db import SessionStore
+
+
+class CheckDriverResponse(CronJobBase):
+    # driver_response = DriverResponse.objects.all()
+    now = datetime.datetime.now()
+    RUN_AT_TIMES = ["6:20"]
+    schedule = Schedule(run_at_times=RUN_AT_TIMES)
+
+
+    def check_driver_response():
+        print "hello World"
+        pass
+
 
 
 # gcm sender function
@@ -80,14 +102,16 @@ class TaxiLocationDetail(APIView):
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
-        user_profile= request.user.userprofiles
+        # print "hello"
+        # print request.user
+        # user_profile= request.user.userprofiles
         # driver = user_profile.user_type
         # print driver
         # data = request.data
         # print data
         # # data["driver"]  = request.user.id
         taxiLocation = self.get_object(pk)
-        serializer = TaxiLocationSerializer(taxiLocation, data=data)
+        serializer = TaxiLocationSerializer(taxiLocation, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -167,32 +191,54 @@ class TaxiSearchList(APIView):
 # Gulsan 23.792496 90.407806
 # Rampur 23.761226, 90.420766
 
+driver_list = []
 
 class DriverResponse(APIView):
+
     """
     List all snippets, or create a new snippet.
     """
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         data = request.data
-        for driver in data:
-            driver_id = driver.id
+        serializer = DriverResponseSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            CheckDriverResponse()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
-            if driver_id:
-                user_profile = UserProfile.objects.get(connected_user=driver_id)
-                driver_name = user_profile.username
-                passenger_user_profile = request.user.userprofiles
-                passenger_gcm_register =  passenger_user_profile.gcm_register
-                send_message = make_request("Hello %s " % user_profile.first_name,
-                                                    "Do you want to go from %s,%s to %s,%s !" % (source_lat, source_lon, dest_lat, dest_lon),
-                                                    [gcm_register],
-                                                    # "http://khep.finder-lbs.com:8001"
-                                                    data)
-                if response_result["success"] == 1:
-                    print "success ..."
-                    # print taxiLocation
-                    return Response(status=status.HTTP_200_OK)
-                else:
-                    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+            # driver_id = driver.id
+            # if driver_id:
+            #     driver_list.append(driver)
+            #     request.session['driver_list'] = driver_list
+            #     d_list = request.session['driver_list']
+            #     print d_list
+
+                #
+                #
+                # user_profile = UserProfile.objects.get(connected_user=driver_id)
+                # driver_name = user_profile.username
+                #
+                # passenger_user_profile = request.user.userprofiles
+                # passenger_gcm_register =  passenger_user_profile.gcm_register
+                #
+                # send_message = make_request("Hello %s " % user_profile.first_name,
+                #                                     "Do you want to go from %s,%s to %s,%s !" % (source_lat, source_lon, dest_lat, dest_lon),
+                #                                     [gcm_register],
+                #                                     # "http://khep.finder-lbs.com:8001"
+                #                                     data)
+                # if response_result["success"] == 1:
+                #     print "success ..."
+                #     # print taxiLocation
+            #     return Response(status=status.HTTP_200_OK)
+            # else:
+            #     return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
     # def post(self, request, format=None):
     #     data = request.data
@@ -221,4 +267,5 @@ class DriverResponse(APIView):
     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     #
+
 

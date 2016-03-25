@@ -46,12 +46,13 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'djoser',
-    
-
+    'django_cron',
+    'django_extensions',
     # app name
     'base',
     'userprofile',
     'rides',
+
 
     
 
@@ -192,3 +193,6 @@ EMAIL_PORT = 587
 
 #This did the trick
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SESSION_SAVE_EVERY_REQUEST = True
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"

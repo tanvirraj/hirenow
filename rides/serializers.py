@@ -11,3 +11,9 @@ class TaxiLocationSerializer(serializers.ModelSerializer):
         fields = ('id', 'driver', 'lat', 'lon')
 
 
+
+class DriverResponseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TaxiLocation
+        fields = ('id', 'driver', 'lat', 'lon','status')
+

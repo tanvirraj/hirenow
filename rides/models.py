@@ -13,3 +13,10 @@ class TaxiLocation(models.Model):
     def __unicode__(self):
         return self.driver.username
 
+
+class DriverResponse(models.Model):
+    driver = models.OneToOneField(User, related_name='response_driver')
+    lon = models.FloatField(default=0.0)
+    lat = models.FloatField(default=0.0)
+    status = models.BooleanField(default=True)
+
